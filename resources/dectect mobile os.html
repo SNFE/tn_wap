@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>Which broswer</title>
+</head>
+<body>
+	<script type="text/javascript">
+		
+		function detectmobile() { 
+			if(navigator.userAgent.match(/Android/i)) {
+			 	alert('Android');
+			} else if(navigator.userAgent.match(/webOS/i)) {
+			 	alert('webOS');
+			} else if(navigator.userAgent.match(/iPhone/i)) {
+			 	alert('iPhone');
+			} else if(navigator.userAgent.match(/iPad/i)) {
+			 	alert('iPad');	
+			} else if(navigator.userAgent.match(/iPod/i)) {
+			 	alert('iPod');
+			} else if(navigator.userAgent.match(/Mobile\/[0-9A-z]{6,7} Safari/i)) {
+				alert('Mobile Safari');
+			} else if(navigator.userAgent.match(/BlackBerry|BB10/i)) {
+			 	alert('BlackBerry');
+			} else if(navigator.userAgent.match(/Windows Phone/i)) {
+			 	alert('Windows Phone');
+			} else if(navigator.userAgent.match(/Silk/i)) {
+				alert('Kindle');
+			} else {
+			    document.write('<p>' + navigator.userAgent + '</p>');
+			}
+		}
+
+		detectmobile();
+
+	</script>
+</body>
+</html>
