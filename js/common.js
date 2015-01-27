@@ -109,7 +109,7 @@ function dectectBroswer() {
 	} else if(userAgent.match(/Windows Phone/i)) {
 	 	result = 'Windows Phone';
 	} else {
-	    document.write('<p>' + navigator.userAgent + '</p>');
+	    result = '';
 	}
 
 	//console.log(result);
@@ -167,16 +167,21 @@ function idCode60() {
 
 /* input validate */
 function check() {
-	var reg = /[a-zA-Z0-9_-]{6,13}/g;
+	var reg_un = /[a-zA-Z0-9_-]{4,20}/g;
+	//var	reg_pw = /[]/g;
 
 	if($('.uname').val() == '' || $('.uname').val() == null) {
 		alert('请输入用户名');
 		$('.uname').focus();
 		return false;
-	} else if(reg.exec($('.uname').val()) == null){
+	} else if(reg_un.exec($('.uname').val()) == null){
 		$('.uname').val('');
 		alert('请输入6~13位用户名');
 		$('.uname').focus();
+		return false;
+	} else if($('.pw').val() == '' || $('.pw').val() == null) {
+		alert('请输入密码');
+		$('.pw').focus();
 		return false;
 	} else {
 		return true;
@@ -235,7 +240,7 @@ $(function(){
 	});
 
 	/* 登录 */
-	$('.loginBtn').click(function() {
+	$('#loginBtn').click(function() {
 		if(check()) {
 			var date = new Date();
 			date = date.getFullYear() + '-' + date.getMonth()+1 + '-' + date.getDate() + ' ' + date.getHours() + ':' + date.getMinutes() + ':' + date.getSeconds();
@@ -255,8 +260,24 @@ $(function(){
 				function(e) {
 					console.log(e);
 			});
+
+			/* login */
+			var paramss = {
+				'method': 'login',
+				'username': $('.uname').val(),
+				'md5Pwd': $.md5($('.pw').val())
+			}
+
+			Webapp.postLoadData('/auth.do', paramss,
+				function(data) {
+					console.log(data);
+					window.location.href = 'http://115.29.163.231/wap/user-account.html';
+				}, 
+				function(e) {
+					console.log(e);
+			});
 		} else {
-			console.log('else condition'); //for test
+			console.log('validate error'); //for test
 		}
 	});
 
@@ -283,5 +304,37 @@ $(function(){
 		} else {
 			console.log('else condition'); //for test
 		}
+	});
+
+	/* 根据手机号获取一个多个用户名 */
+	$('.pw').focus(function() {
+		var reg = /1[3|5|7|8|][0-9]{9}/g,
+			html = '';
+		if(reg.exec($('.uname').val()) != null) {
+			var params = {
+				'method': 'loginGetUser',
+				'username': $('.uname').val()
+			}
+
+			Webapp.postLoadData('/auth.do', params,
+				function(data) {
+					console.log(data);
+				}, 
+				function(e) {
+					console.log(e);
+			});
+
+			$('userIdBox').show().html();
+			// TODO: 动态append
+        	/*<em>id11111111</em>
+        	<aside>
+            	<i>id22222</i>
+                <i>id333333</i>
+                <i>id5555555</i>
+            </aside>*/
+		} else {
+			return false;
+		}
+		
 	});
 });

@@ -25,7 +25,7 @@
 </header>
 <ul class="accountInfo">
 	<li>
-        <em>范佩西</em>
+        <em class="uname">范佩西</em>
         <i>13987654321</i>
     </li>
     <li>
@@ -60,5 +60,29 @@
 </footer>
 <script src="js/jquery.min.js" type="text/javascript"></script>
 <script src="js/common.js" type="text/javascript"></script>
+<script type="text/javascript">
+
+    $(function() {
+        Webapp.postLoadData('/auth.do', {'method': 'isLogin'},
+        function(data) {
+            console.log(data);
+            if(!data.result) {
+                window.location.href = '/wap/sign-in.html';
+            }
+        }, 
+        function(e) {
+            console.log(e);
+        });
+
+        Webapp.postLoadData('/account.do', {'method': 'loadAccountInfo'},
+            function(data) {
+                console.log(data);
+                $('.uname').html(data.result.user.username);
+            }, 
+            function(e) {
+                console.log(e);
+        });
+    });
+</script>
 </body>
 </html>
