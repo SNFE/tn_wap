@@ -11,7 +11,7 @@
 <header>
 	<a href="sign-in.html" class="loginBtn topLogin">登录</a>
 	<a href="index.html" class="topLogo"></a>
-  <nav class="menu">
+<nav class="menu">
     	<div>
         	<a href="index.html">首页</a>
             <a href="sign-up.html">注册</a>
@@ -37,8 +37,8 @@
 <section class="investmentData mg-5-15">
     <span>累计投资额</span>
     <span>投哪人已赚取</span>
-    <span><b>34.08</b> 亿元</span>
-    <span><b>5695</b> 万元</span>
+    <span class="deal"></span>
+    <span class="earn"></span>
 </section>
 <section class="mod mg-5-15">
     <h2 class="title-common">
@@ -60,7 +60,7 @@
     <figure class="hotTender">
         <i class="icons"></i>
         <figcaption>新手专享</figcaption>
-        <span class="num">期限<i>12</i>个月 预期年化收益率<i>99.39</i>%</span>
+        <span class="num">期限<i>1</i>个月 预期年化收益率<i>15</i>%</span>
         <p class="text-common">为新注册用户精选高利率优质标</p>
     </figure>
     <figure class="hotTender">
@@ -127,10 +127,33 @@
 </footer>
 <aside class="appDownloadBar">
 	<i>&times;</i>
-	<a href="http://file.touna.cn/app/touna_licai_gwwap.apk" class="app-link">投哪网理财</a> 投资挣钱，请下载APP
+	<a href="http://file.touna.cn/app/touna_licai_gwwap.apk" class="app-link-index"><em class="fColor2">投哪网理财</em> 投资挣钱，请点击下载APP</a>
 </aside>
 <script type="text/javascript" src="js/jquery.min.js"></script>
 <script type="text/javascript" src="js/navigation.js"></script>
 <script type="text/javascript" src="js/common.js"></script>
+<script type="text/javascript">
+    var today = new Date();
+    var url = "http://115.29.163.231/jsonfile/index_stat.html?t=2015130";
+    
+    Webapp.loadJsonData(url,
+        function(data) {
+            console.log(data);
+            $('.deal').html('<b>' + data.deal_account + '</b> 万元');
+            $('.earn').html('<b>' + data.earn_money + '</b> 万元')
+        }, 
+        function(e) {
+            console.log(e);
+    });
+</script>
+<script>
+    var _hmt = _hmt || [];
+    (function() {
+        var hm = document.createElement("script");
+        hm.src = "//hm.baidu.com/hm.js?877d00ba98baf5c36f459bcf71c90419";
+        var s = document.getElementsByTagName("script")[0]; 
+        s.parentNode.insertBefore(hm, s);
+    })();
+</script>
 </body>
 </html>

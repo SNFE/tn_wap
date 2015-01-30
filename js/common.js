@@ -46,6 +46,23 @@ Webapp.postLoadData = function(url, data, success, error) {
 	});
 }
 
+Webapp.loadJsonData = function(url_src, callback, err_handle) {  //调用JSON数据
+	var timeOut = false; var ok = false;	
+	$.getJSON(url_src, function(jsondata) {				
+				if(!timeOut){								
+					ok = true;
+					callback(jsondata);			
+				}
+			});
+	setTimeout(function(){				
+		if(!ok) {			
+			timeOut = true;			
+			if(err_handle) err_handle(0);			 
+		}
+	},___invoke___interface___timeout___);
+}
+
+
 /* 更多理财产品滚动 */
 function ivtProdListSlide(){
 	var	liMr = parseInt($(".ivtProdList li").css("marginRight")),
