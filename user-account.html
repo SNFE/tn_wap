@@ -10,7 +10,7 @@
 <body>
 <header>
 	<a class="returnBack" onClick="history.go(-1);"></a>
-  <h2 class="pageTitle">我的账户</h2>
+    <h2 class="pageTitle">我的账户</h2>
 	<nav class="menu">
     	<div>
         	<a href="index.html">首页</a>
@@ -18,33 +18,46 @@
             <a href="sign-in.html">登录</a>
             <a href="guide-line.html">指南</a>
             <a href="tel:4009099888">问客服</a>
-            <a href="">下载APP</a>
-            <i></i>
+            <a href="" class="app-link">下载APP</a>
         </div>
-	</nav>
+        <div>
+        	<a href="index.html">首页</a>
+            <a href="guide-line.html">指南</a>
+            <a href="tel:4009099888">问客服</a>
+            <a href="user-account.html">我的账户</a>
+            <a href="javascript:;" onClick="logout();">退出账户</a>
+            <a href="" class="app-link">下载APP</a>
+        </div>
+    </nav>
 </header>
 <ul class="accountInfo">
 	<li>
-        <em class="uname">范佩西</em>
-        <i>13987654321</i>
+        <em class="uname"></em>
+        <i class="phone"></i>
     </li>
     <li>
     	<cite>累计收益</cite>
-        <b>600.00元</b>
+        <b class="profile-money"></b>
     </li>
     <li>
         <em>资产总额</em>
-        <i>845645.89元</i>
+        <i class="total"></i>
     </li>
     <li>
         <em>可用余额</em>
-        <i>651.63元</i>
+        <i class="use-money"></i>
+    </li>
+    <li>
+        <em>体验金</em>
+        <sup>可投资</sup>
+        <i class="jin-money"></i>
     </li>
     <li>
         <em>体验收益</em>
-        <i>4656.17元</i>
+        <i class="exp-profile-money"></i>
     </li>
 </ul>
+<a href="about-exp.html" class="mg-0-15">如何使用体检金投资体验标？</a>
 <aside class="guide-DLApp">
 	<a href="guide-line.html">投哪指南</a>
     <a href="">APP下载</a>
@@ -58,29 +71,24 @@
     Copyright Reserved 2011-2015<br>
     <a href="javascript:;">移动站</a> | <a href="http://www.touna.cn/">电脑版</a>
 </footer>
-<script src="js/jquery.min.js" type="text/javascript"></script>
-<script src="js/common.js" type="text/javascript"></script>
+<script type="text/javascript" src="js/jquery.min.js"></script>
+<script type="text/javascript" src="js/navigation.js"></script>
+<script type="text/javascript" src="js/common.js"></script>
 <script type="text/javascript">
 
     $(function() {
         Webapp.postLoadData('/auth.do', {'method': 'isLogin'},
         function(data) {
             console.log(data);
+            /* get user account info */
+            getAccount();
             if(!data.result) {
                 window.location.href = '/wap/sign-in.html';
             }
         }, 
         function(e) {
             console.log(e);
-        });
-
-        Webapp.postLoadData('/account.do', {'method': 'loadAccountInfo'},
-            function(data) {
-                console.log(data);
-                $('.uname').html(data.result.user.username);
-            }, 
-            function(e) {
-                console.log(e);
+            window.location.href = '/wap/sign-in.html';
         });
     });
 </script>

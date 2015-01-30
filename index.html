@@ -9,19 +9,26 @@
 </head>
 <body>
 <header>
-	<a href="sign-in.html" class="loginBtn">登录</a>
+	<a href="sign-in.html" class="loginBtn topLogin">登录</a>
 	<a href="index.html" class="topLogo"></a>
-    <nav class="menu">
+  <nav class="menu">
     	<div>
         	<a href="index.html">首页</a>
             <a href="sign-up.html">注册</a>
             <a href="sign-in.html">登录</a>
             <a href="guide-line.html">指南</a>
             <a href="tel:4009099888">问客服</a>
-            <a href="">下载APP</a>
-            <i></i>
+            <a href="" class="app-link">下载APP</a>
         </div>
-	</nav>
+        <div>
+        	<a href="index.html">首页</a>
+            <a href="guide-line.html">指南</a>
+            <a href="tel:4009099888">问客服</a>
+            <a href="user-account.html">我的账户</a>
+            <a href="javascript:void(0);" onClick="logout();">退出账户</a>
+            <a href="" class="app-link">下载APP</a>
+        </div>
+    </nav>
 </header>
 <section class="banner">
 	<img src="images/banner.png">
@@ -29,7 +36,7 @@
 </section>
 <section class="investmentData mg-5-15">
     <span>累计投资额</span>
-    <span>已为投资人赚取利益</span>
+    <span>投哪人已赚取</span>
     <span><b>34.08</b> 亿元</span>
     <span><b>5695</b> 万元</span>
 </section>
@@ -59,13 +66,13 @@
     <figure class="hotTender">
         <i class="icons"></i>
         <figcaption>APP专享</figcaption>
-        <span class="num">期限<i>12</i>个月 预期年化收益率<i>99.39</i>%</span>
+        <span class="num">期限<i>1</i>个月 预期年化收益率<i>13.2</i>%+</span>
         <p class="text-common">打开投哪网理财APP，有特供好标</p>
     </figure>
     <figure class="hotTender">
         <i class="icons">智</i>
         <figcaption>智能投标</figcaption>
-        <span class="num">期限1年 预期年化收益率12%</span>
+        <span class="num">期限12个月 预期年化收益率12%</span>
         <p class="text-common">稳健、便捷、高效，免利息管理费</p>
     </figure>
 </section>
@@ -97,11 +104,11 @@
             </li>
         </ul>
     </div>
-	<div class="ivtProdCon text-common">大券商资管计划质押产品，期限短，免管理费</div>
-    <div class="ivtProdCon text-common">股票配资产品，实时监管，安全可靠</div>
-    <div class="ivtProdCon text-common">小微企业车辆抵押贷款产品，信誉好，高盈利</div>
-    <div class="ivtProdCon text-common">私营业主不动产抵押贷款产品，信誉好</div>
-    <div class="ivtProdCon text-common">工薪阶层信用贷款，多重风控，严格审核</div>
+	<div class="ivtProdCon text-common"><b>投投乐：</b>大券商资管计划质押产品，期限短，免管理费</div>
+    <div class="ivtProdCon text-common"><b>多多盈：</b>股票配资产品，实时监管，安全可靠</div>
+    <div class="ivtProdCon text-common"><b>旺车贷：</b>小微企业车辆抵押贷款产品，信誉好，高盈利</div>
+    <div class="ivtProdCon text-common"><b>旺楼贷：</b>私营业主不动产抵押贷款产品，信誉好</div>
+    <div class="ivtProdCon text-common"><b>旺薪贷：</b>工薪阶层信用贷款，多重风控，严格审核</div>
 </section>
 <section class="mod2 partnership">
     <h2 class="title-common">合作伙伴</h2>
@@ -120,15 +127,10 @@
 </footer>
 <aside class="appDownloadBar">
 	<i>&times;</i>
-	<em>投哪网理财</em> 投资挣钱，请下载APP
+	<a href="http://file.touna.cn/app/touna_licai_gwwap.apk" class="app-link">投哪网理财</a> 投资挣钱，请下载APP
 </aside>
-<script src="js/jquery.min.js" type="text/javascript"></script>
-<script type="text/javascript">
-    $(function(){
-        /* 检测浏览器 */
-        dectectBroswer();
-    });
-</script>
-<script src="js/common.js" type="text/javascript"></script>
+<script type="text/javascript" src="js/jquery.min.js"></script>
+<script type="text/javascript" src="js/navigation.js"></script>
+<script type="text/javascript" src="js/common.js"></script>
 </body>
 </html>

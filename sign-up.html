@@ -21,52 +21,77 @@
             <a href="sign-in.html">登录</a>
             <a href="guide-line.html">指南</a>
             <a href="tel:4009099888">问客服</a>
-            <a href="">下载APP</a>
-            <i></i>
+            <a href="" class="app-link">下载APP</a>
         </div>
-	</nav>
+        <div>
+        	<a href="index.html">首页</a>
+            <a href="guide-line.html">指南</a>
+            <a href="tel:4009099888">问客服</a>
+            <a href="user-account.html">我的账户</a>
+            <a href="javascript:;">退出账户</a>
+            <a href="" class="app-link">下载APP</a>
+        </div>
+    </nav>
 </header>
 <section class="banner">
 	<img src="images/banner-signup.jpg">
 </section>
 <div class="signForm">
 	<div class="xpRules">
-    	体验金奖励规则
+    	新手福利万元体验金活动规则
         <article>
-        	<p>　　1、活动时间：2014年11月19日11:00至2015年2月28日24:00。<br>　　2、体验金是投哪网的一种虚拟货币，不显示在用户的可用资金中，本金不可提现，此次活动中的体验金的利率是12%，收益期是3天,有效期为2014年11月19日-2015年3月31日。<br>　　3、此活动仅限投哪网PC站点、app、移动站点注册用户参与。<br>　　4、本活动解释权归投哪网所有，对于恶意刷奖的行为，投哪网有权取消其活动资格。</p>
+        	<p>
+　　1.活动时间：2014年11月19日11:00至2015年2月28日24:00；
+<br>
+　　2.体验金是投哪网的一种虚拟货币，不显示在用户的可用资金中，本金不可提现，仅限投资体验标，不可投资其他标的；
+<br>
+　　3.使用体验金投资体验标所得收益，将作为实际收益金额，赠送到用户的投哪账户中，可提现；
+<br>
+　　4.新手福利活动赠送的体验金，对应体验标利率是12%，收益期是3天,有效期为2014年11月19日-2015年3月31日；
+<br>
+　　5.此活动仅限投哪网PC站点（touna.cn）、投哪网理财app、移动站点（m.touna.cn）新注册用户参与；
+<br>
+　　6.本活动解释权归投哪网所有，对于恶意刷奖的行为，投哪网有权取消其活动资格。
+</p>
         </article>
     </div>
 	<div class="iptbox">
     <label>用户名</label>
-        <input name="" class="uname" type="text" placeholder="请输入6~13位用户名">
+        <input id="uname" name="" class="uname" type="text" placeholder="4-20位字符，不能以数字开头">
     </div>
     <div class="iptbox">
     	<label>手机</label>
-        <input name="" type="text" placeholder="请输入手机号">
+        <input id="phone" name="" type="text" placeholder="请输入手机号">
     </div>
     <div class="iptbox idCodeBox">
     	<label>验证码</label>
-        <input name="" type="text" placeholder="请输入验证码">
-        <i class="idCode">获取验证码</i>
+        <input id="validCode" name="" type="text" placeholder="请输入验证码">
+        <input id="idCode" type="button" name="validCode" class="idCode flagCode" disabled="disabled" value="获取验证码">
     </div>
     <div class="iptbox">
     	<label>密码</label>
-        <input name="" type="text" placeholder="设置密码">
+        <input id="pw" name="" type="password" placeholder="设置密码">
     </div>
     <div class="iptbox">
     	<label>确认</label>
-        <input name="" type="text" placeholder="确认密码">
+        <input id="pw-confirm" name="" type="password" placeholder="确认密码">
     </div>
     <div class="mg-0-15">
     	<br><br>
         <button class="btnBlueBig regBtn">注册领奖</button>
         <br>
         <span class="fs14">注册表示您同意 <a href="agreement.html" class="fColor2">《使用规则》</a></span>
+        <article class="mod mg-15-5">
+        	<p class="text-common">注册信息填写提示<br>
+            　　1、为保护您的隐私，用户名不要使用您的真实姓名或含有您的手机号；<br>
+            　　2、用户名为4-20位字符，使用字母或数字，且不能以数字开头，注册成功后不能修改用户名；<br>
+            　　3、登陆密码为6-20位，必须同时含有字母和数字，可以有特殊字符，不能有空格。</p>
+        </article>
     </div>
 </div>
 <aside class="guide-DLApp">
 	<a href="guide-line.html">投哪指南</a>
-    <a href="">APP下载</a>
+    <a href="" class="app-link">APP下载</a>
 </aside>
 <footer>
 	<i class="logo-footer"></i><br>
@@ -74,7 +99,23 @@
     Copyright Reserved 2011-2015<br>
     <a href="javascript:;">移动站</a> | <a href="http://www.touna.cn/">电脑版</a>
 </footer>
-<script src="js/jquery.min.js" type="text/javascript"></script>
-<script src="js/common.js" type="text/javascript"></script>
+<script type="text/javascript" src="js/jquery.min.js"></script>
+<script type="text/javascript" src="js/jquery.md5.js"></script>
+<script type="text/javascript" src="js/navigation.js"></script>
+<script type="text/javascript" src="js/common.js"></script>
+<script type="text/javascript">
+    $(function() {
+        Webapp.postLoadData('/auth.do', {'method': 'isLogin'},
+        function(data) {
+            console.log(data);
+            if(data.result) {
+                window.location.href = '/wap/user-account.html';
+            }
+        }, 
+        function(e) {
+            
+        });
+    });
+</script>
 </body>
 </html>

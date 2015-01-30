@@ -89,83 +89,7 @@ function ivtProdListSlide(){
 	});
 };
 
-/* 检测浏览器 */
-function dectectBroswer() {
-	var userAgent = navigator.userAgent,
-		result = '';
-
-	if(userAgent.match(/Chrome/i)) {
-	 	result = 'Chrome';
-	} else if(userAgent.match(/Firefox/i)) {
-	 	result = 'Firefox';
-	} else if(userAgent.match(/Mobile\/[0-9A-z]{6,10} Safari/i)) {
-	 	result = 'Mobile Safari';
-	} else if(userAgent.match(/Android/i)) {
-	 	result = 'Android';
-	} else if(userAgent.match(/ucweb/i)) {
-	 	result = 'UCWeb';
-	} else if(userAgent.match(/MQQBrowser/i)) {
-	 	result = 'QQBrowser';
-	} else if(userAgent.match(/Windows Phone/i)) {
-	 	result = 'Windows Phone';
-	} else {
-	    result = '';
-	}
-
-	//console.log(result);
-	/*$.ajax({
-		'url': '/appMobile.do',
-		'type': 'post',
-		'data': {
-			'method': 'addAppMobileUser',
-			'browerType': result,
-			'regcount': '1',
-			'subtime': new Date().getTime()
-		},
-		success: function(data) {
-			console.log(data);
-		},
-		error: function(e) {
-			console.log(e);
-		}
-	});*/
-	
-	var params = {
-		'method': 'addAppMobileUser',
-		'browerType': result,
-		'regcount': '1',
-	}
-
-	Webapp.postLoadData('/appMobile.do', params,
-		function(data) {
-			console.log(data);
-		},
-		function(e) {
-			console.log(e);
-	});
-}
-
-/* 获取验证码 60秒倒计时 */
-function idCode60() {
-	var totaltime = 60;
-	function auto() {
-		totaltime--;
-		if (totaltime > 0) {
-			$(".idCodeBox .idCode").css("background","#ccc");
-			$(".idCodeBox .idCode").html( totaltime + ' 秒' );
-		} else {
-			$(".idCodeBox .idCode").css("background","#59a4ff");
-			$(".idCodeBox .idCode").html('获取验证码');
-			clearInterval(t);
-			$(".idCodeBox .idCode").one("click", function(){
-				idCode60();
-			});
-		};
-	};
-	var t = setInterval(auto, 1000);
-};
-
-/* input validate */
+/* login input validate */
 function check() {
 	var reg_un = /[a-zA-Z0-9_-]{4,20}/g;
 	//var	reg_pw = /[]/g;
@@ -176,7 +100,7 @@ function check() {
 		return false;
 	} else if(reg_un.exec($('.uname').val()) == null){
 		$('.uname').val('');
-		alert('请输入6~13位用户名');
+		alert('请输入4~20位用户名');
 		$('.uname').focus();
 		return false;
 	} else if($('.pw').val() == '' || $('.pw').val() == null) {
@@ -186,8 +110,50 @@ function check() {
 	} else {
 		return true;
 	}
-
 	//TODO -> more validate..
+}
+
+/* reg input check */
+/*function regCheck(value, selector) {
+	var reg = '';
+	if(selector == 'uname') {
+		reg = /^([\u4E00-\u9FA5\uf900-\ufa2d]|[a-zA-Z])([\u4E00-\u9FA5\uf900-\ufa2d\.\·]|[a-zA-Z0-9_-]){3,19}$/;
+
+	}
+}*/
+
+/* get user info */
+function getAccount() {
+	Webapp.postLoadData('/account.do', {'method': 'loadAccountInfo'},
+        function(data) {
+            console.log(data);
+            $('.uname').html(data.result.user.username);
+			$('.use-money').html(data.result.account.use_money.toFixed(2) + '元');
+        }, 
+        function(e) {
+            console.log(e);
+    });
+
+    Webapp.postLoadData('/account.do', {'method': 'loadProfitInfo'},
+        function(data) {
+            console.log(data);
+            $('.total').html(data.result.account.total_money + '元');
+            $('.profile-money').html(data.result.profit.total_in_money + '元');
+        }, 
+        function(e) {
+            console.log(e);
+    });
+
+    Webapp.postLoadData('/virtual.do', {'method': 'getProfitForApp'},
+        function(data) {
+            console.log(data);
+            $('.jin-money').html(data.result.result.useMoney.toFixed(2) + '元');
+            $('.exp-profile-money').html(data.result.result.interest.toFixed(2) + '元');
+            $('.phone').html(data.result.phone);
+        }, 
+        function(e) {
+            console.log(e);
+    });
 }
 
 $(function(){
@@ -196,9 +162,9 @@ $(function(){
 	ivtProdListSlide();
 	
 	/* header全局menu下拉框 */
-	$("header .menu").click(function(){
+	/*$("header .menu").click(function(){
 		$("div",this).slideToggle(200)
-	});
+	});*/
 	
 	/* 投哪APP下载bar */
 	$(".appDownloadBar i").click(function(){
@@ -211,26 +177,21 @@ $(function(){
 		$(this).toggleClass("userIdBoxOpen");
 	});
 	
-	$(".userIdBox i").each(function(){
+	/*$(".userIdBox i").each(function(){
 		$(this).click(function(evt){
 			evt.stopPropagation();
 			$(".userIdBox em").text($(this).text());
 			$(".userIdBox aside").slideUp();
 			$(".userIdBox").toggleClass("userIdBoxOpen");
 		})
-	});
+	});*/
 	
 	/* 用户体验金bar */
 	$(".xpRules").click(function(){
 		$("article",this).slideToggle();
 		$(this).toggleClass("xpRulesOpen");
 	});
-	
-	/* 发送验证码 倒计时 */
-	$(".idCodeBox .idCode").one("click", function(){
-		idCode60();
-	});
-	
+		
 	/* 投哪指南 内容页下拉  +  资费说明 详细内容下拉 */
 	$(".guideLineQApage .guideLineQA li,.expense > div").click(function(){
 		$(".guideLineQApage .guideLineQA li article,.expense > div article").not($("article",this)).slideUp();
@@ -243,7 +204,7 @@ $(function(){
 	$('#loginBtn').click(function() {
 		if(check()) {
 			var date = new Date();
-			date = date.getFullYear() + '-' + date.getMonth()+1 + '-' + date.getDate() + ' ' + date.getHours() + ':' + date.getMinutes() + ':' + date.getSeconds();
+			date = date.getFullYear() + '-' + date.getMonth()+1 + '-' + date.getDate();
 
 			var params = {
 				'method': 'addAppMobileUserView',
@@ -271,68 +232,204 @@ $(function(){
 			Webapp.postLoadData('/auth.do', paramss,
 				function(data) {
 					console.log(data);
-					window.location.href = 'http://115.29.163.231/wap/user-account.html';
+					window.location.href = '/wap/user-account.html';
 				}, 
 				function(e) {
-					console.log(e);
+					console.log(e.desc);
 			});
 		} else {
-			console.log('validate error'); //for test
+			console.log('login validate error'); //for test
 		}
 	});
 
+	/* 注册 */
 	$('.regBtn').click(function() {
-		if(check()) {
-			var date = new Date();
-			date = date.getFullYear() + '-' + date.getMonth()+1 + '-' + date.getDate() + ' ' + date.getHours() + ':' + date.getMinutes() + ':' + date.getSeconds();
+		var flag = false;
 
+		var uname = $('#uname').val(),
+			phone = $('#phone').val(),
+			validCode = $('#validCode').val(),
+			pw = $('#pw').val(),
+			regU = /^([\u4E00-\u9FA5\uf900-\ufa2d]|[a-zA-Z])([\u4E00-\u9FA5\uf900-\ufa2d\.\·]|[a-zA-Z0-9_-]){3,19}$/,
+			regP = /^13[0-9]{9}$|14[0-9]{9}|15[0-9]{9}$|17[0-9]{9}|18[0-9]{9}$/,
+			regC = /^[0-9a-zA-Z]{6}$/,
+			regPw = /^(?![^a-zA-Z]+$)(?!\D+$).{6,20}$/;
+		if(regU.exec(uname) == null) {
+			alert('请输入正确的用户名!');
+			return false;
+		} else if(regP.exec(phone) == null) {
+			alert('请输入正确的手机号码!');
+			return false;
+		} else if(regC.exec(validCode) == null) {
+			alert('请输入正确的验证码!');
+			return false;
+		} else if(regP.exec(phone) == null) {
+			alert('请输入正确的手机号码!');
+			return false;
+		} else if(pw == '') {
+			alert('请输入密码!');
+			return false;
+			if(regPw.exec(pw) == null) {
+				alert('密码格式不正确。要求6-20位字符，必须同时含有字母和数字!');
+				return false;
+			}
+		} else if($('#pw-confirm').val() != pw) {
+			alert('两次密码不一致!');
+			return false;
+		}else {
+			flag = true;
+		}
+
+		if(flag) {
+			/* reg */
 			var params = {
-				'method': 'addAppMobileUserView',
-				'visitdate': date,
-				'regcount': '1',
-				'logcount': '0',
-				'username': $('.uname').val()
+				'method': 'registerByPhone',
+				'username': uname,
+				'md5Pwd': $.md5(pw),
+				'phone': phone,
+				'channel': 'wap',
+				'phoneCode': validCode,
+				'smsRandom': smsRandom
 			}
 
-			Webapp.postLoadData('/appMobile.do', params,
+			Webapp.postLoadData('/auth.do', params,
 				function(data) {
+					$('.regBtn').attr('disabled','disabled').css({cursor: 'default',background:"rgb(182, 184, 185)"});
 					console.log(data);
+
+					/* collect */
+					var visitdate = new Date();
+					visitdate = visitdate.getFullYear() + '-' + visitdate.getMonth()+1 + '-' + visitdate.getDate();
+
+					var params = {
+						'method': 'addAppMobileUserView',
+						'visitdate': visitdate,
+						'regcount': '1',
+						'logcount': '0',
+						'username': $('.uname').val()
+					}
+
+					Webapp.postLoadData('/appMobile.do', params,
+						function(data) {
+							console.log(data);
+						},
+						function(e) {
+							console.log(e);
+					});
+
+					window.location.href = '/wap/user-account.html';
 				},
 				function(e) {
 					console.log(e);
+					alert(e.desc);
+					$('.regBtn').css({cursor: 'pointer', 'backgroundColor': '#59a4ff'}).removeAttr("disabled");
 			});
 		} else {
-			console.log('else condition'); //for test
+			alert('注册失败');
+			$('.regBtn').css({cursor: 'pointer', 'backgroundColor': '#59a4ff'}).removeAttr("disabled");
 		}
+	});
+
+	$('#validCode').focus(function() {
+		var reg = /^13[0-9]{9}$|14[0-9]{9}|15[0-9]{9}$|17[0-9]{9}|18[0-9]{9}$/;
+		var flag = true;
+		if(reg.exec($('#phone').val())) {
+			if($('#idCode').hasClass('flagCode')) {
+				$('.idCode').css({cursor: 'pointer', 'backgroundColor': '#59a4ff'}).removeAttr("disabled");
+				$('#idCode').removeClass('flagCode');
+			}
+		} else {
+			alert("请填写手机号码");
+			$('#phone').focus();
+		}
+	});
+	
+	var smsRandom = '';
+	/* reg phone msg */
+	$("#idCode").click(function(){
+		var params = {
+			'smsType': 'register',
+			'smsPhone': $('#phone').val(),
+			'joinType': 'wap'
+		}
+
+		Webapp.postLoadData('/smsApi.do', params,
+			function(data) {
+				console.log(data);
+				smsRandom = data.smsRandom;
+			},
+			function(e) {
+				console.log(e);
+
+		});
+
+		/* 发送验证码 倒计时 */
+		var totaltime = 120;
+
+		function auto() {
+			totaltime--;
+			if (totaltime > 0) {
+				$(".idCodeBox .idCode").css("background","rgb(182, 184, 185)");
+				$(".idCodeBox .idCode").val( totaltime + ' 秒' ).attr('disabled','disabled').css({cursor: 'default'});
+			} else {
+				$(".idCodeBox .idCode").css("background","#59a4ff");
+				$('#idCode').addClass('flagCode');
+				$(".idCodeBox .idCode").val('重新获取验证码').removeAttr('disabled').css({cursor: 'pointer'});
+				clearInterval(t);
+				/*$(".idCodeBox .idCode").one("click", function(){
+					idCode60();
+				});*/
+			};
+		};
+		var t = setInterval(auto, 1000);
 	});
 
 	/* 根据手机号获取一个多个用户名 */
 	$('.pw').focus(function() {
-		var reg = /1[3|5|7|8|][0-9]{9}/g,
+		var reg = /^13[0-9]{9}$|14[0-9]{9}|15[0-9]{9}$|17[0-9]{9}|18[0-9]{9}$/,
 			html = '';
 		if(reg.exec($('.uname').val()) != null) {
 			var params = {
-				'method': 'loginGetUser',
-				'username': $('.uname').val()
+				'method': 'appPhoneQueryForApp',
+				'phone': $('.uname').val()
 			}
 
 			Webapp.postLoadData('/auth.do', params,
 				function(data) {
 					console.log(data);
+					//->> test result: {"method":"appPhoneQuery","result":{"count":3,"list":{"47345":"fsdfsd","47348":"test2","47349":"test3"}},"status":200,"subtime":"1422494625928"}
+					var result = data.result,
+						list = result.list;
+					if(list) {
+						if(result.count > 1) {
+							html = '<em>' + list[0] + '</em><aside>';
+							var i = 1
+							for(;i<result.count;i++) {
+								html += '<i>' + list[i] + '</i>';
+							}
+							html += '</aside>';
+						}
+
+						$('.userIdBox').html('').html(html).show().prev().show();
+					}
+
+					$(".userIdBox i").each(function(){
+						$(this).click(function(evt){
+							evt.stopPropagation();
+							$(".userIdBox em").text($(this).text());
+							$('.uname').val($(this).text());
+							$(".userIdBox aside").slideUp();
+							$(".userIdBox").toggleClass("userIdBoxOpen");
+						})
+					});
 				}, 
 				function(e) {
 					console.log(e);
 			});
 
-			$('userIdBox').show().html();
-			// TODO: 动态append
-        	/*<em>id11111111</em>
-        	<aside>
-            	<i>id22222</i>
-                <i>id333333</i>
-                <i>id5555555</i>
-            </aside>*/
+			
 		} else {
+			console.log("not a phone number");
 			return false;
 		}
 		

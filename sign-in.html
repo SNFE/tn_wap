@@ -13,7 +13,7 @@
 	<div class="signInUp">
     	<a href="sign-up.html">注册</a>
         <a href="javascript:;">登录</a>
-  </div>
+</div>
 	<nav class="menu">
     	<div>
         	<a href="index.html">首页</a>
@@ -21,10 +21,17 @@
             <a href="sign-in.html">登录</a>
             <a href="guide-line.html">指南</a>
             <a href="tel:4009099888">问客服</a>
-            <a href="">下载APP</a>
-            <i></i>
+            <a href="" class="app-link">下载APP</a>
         </div>
-	</nav>
+        <div>
+        	<a href="index.html">首页</a>
+            <a href="guide-line.html">指南</a>
+            <a href="tel:4009099888">问客服</a>
+            <a href="user-account.html">我的账户</a>
+            <a href="javascript:;">退出账户</a>
+            <a href="" class="app-link">下载APP</a>
+        </div>
+    </nav>
 </header>
 <section class="banner">
 	<img src="images/banner.png">
@@ -38,16 +45,11 @@
     	<label>密码</label>
         <input name="" class="pw" type="password" placeholder="请输入密码">
     </div>
-    <div class="mg-0-15">   	
-        <div class="userIdBox" style="display: none;">
-            <i class="fColor1"><br>提示：如忘记密码，请通过投哪网PC网站找回(touna.cn)</i>
-            <i class="fColor1"><br>该手机对应多个用户名，请选择其中一个登录<br><br></i>
-        	<!-- <em>id11111111</em>
-        	<aside>
-            	<i>id22222</i>
-                <i>id333333</i>
-                <i>id5555555</i>
-            </aside> -->
+    <div class="mg-0-15">
+        <i class="fColor1"><br>提示：如忘记密码，请通过投哪网PC网站找回(touna.cn)<br></i>
+        <i class="fColor1" style="display:none;"><br>该手机对应多个用户名，请选择其中一个登录<br><br></i>
+        <div class="userIdBox">
+            
         </div>
         <br><br>
         <button id="loginBtn" class="btnBlueBig">登录</button>
@@ -57,7 +59,7 @@
 </div>
 <aside class="guide-DLApp">
 	<a href="guide-line.html">投哪指南</a>
-    <a href="">APP下载</a>
+    <a href="" class="app-link">APP下载</a>
 </aside>
 <footer>
 	<i class="logo-footer"></i><br>
@@ -67,7 +69,8 @@
 </footer>
 <script type="text/javascript" src="js/jquery.min.js"></script>
 <script type="text/javascript" src="js/jquery.md5.js"></script>
-<script src="js/common.js" type="text/javascript"></script>
+<script type="text/javascript" src="js/navigation.js"></script>
+<script type="text/javascript" src="js/common.js"></script>
 <script type="text/javascript">
     /* if login */
     Webapp.postLoadData('/auth.do', {'method': 'isLogin'},
