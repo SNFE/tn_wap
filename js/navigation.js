@@ -50,7 +50,7 @@ $(function() {
             $("header .menu").click(function() {
                 $("div",this).eq(1).slideToggle(100);
             });
-            $('.topLogin').hide();
+            $('.topLogin').html('账户').attr('href', 'user-account.html');
         }    
     }, 
     function(e) {
@@ -85,6 +85,8 @@ $(function() {
              appLink = 'http://um0.cn/8ArgH/';
         } else if(userAgent.match(/Android/i)) {
              appLink = 'http://file.touna.cn/app/touna_licai_gwwap.apk';
+        } else {
+            appLink = 'http://file.touna.cn/app/touna_licai_gwwap.apk';
         }
 
         //console.log(result);

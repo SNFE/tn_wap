@@ -6,15 +6,17 @@
 <meta name="apple-mobile-web-app-capable" content="yes">
 <title></title>
 <link href="css/style.css" rel="stylesheet" type="text/css" />
+<link rel="stylesheet" type="text/css" href="css/animate.css">
 </head>
 <body>
 <header>
-	<a class="returnBack" onClick="history.go(-1);"></a>
+
+	<a class="returnBack" href="index.html"></a>
 	<div class="signInUp">
     	<a href="sign-up.html">注册</a>
         <a href="javascript:;">登录</a>
-</div>
-	<nav class="menu">
+    </div>
+	<!-- <nav class="menu">
     	<div>
         	<a href="index.html">首页</a>
             <a href="sign-up.html">注册</a>
@@ -31,7 +33,7 @@
             <a href="javascript:;">退出账户</a>
             <a href="" class="app-link">下载APP</a>
         </div>
-    </nav>
+    </nav> -->
 </header>
 <section class="banner">
 	<img src="images/banner.png">
@@ -69,8 +71,8 @@
 </footer>
 <script type="text/javascript" src="js/jquery.min.js"></script>
 <script type="text/javascript" src="js/jquery.md5.js"></script>
-<script type="text/javascript" src="js/navigation.js"></script>
 <script type="text/javascript" src="js/common.js"></script>
+<script type="text/javascript" src="js/navigation.js"></script>
 <script type="text/javascript">
     /* if login */
     Webapp.postLoadData('/auth.do', {'method': 'isLogin'},

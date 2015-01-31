@@ -371,7 +371,7 @@ header .pageTitle {
     background-image: none;
 }
 .hotTender figcaption {
-    margin: -2px 0 5px;
+    margin-bottom:3px;
     color: #3397ff;
     font-size: 16px;
 }
@@ -517,6 +517,8 @@ footer .logo-footer {
     float: right;
     font-size: 34px;
 }
+.appDownloadBar,
+.appDownloadBar a{color:#fff;}
 /* 注册+登录相关 */
 
 .signForm {
@@ -618,6 +620,9 @@ a.fColor3[href="sign-up.html"]:hover{color:#fff;background:#ff6c6c;}
     border: 1px solid #d9dde2;
     border-radius: 3px;
     background: #fff;
+}
+.guide-DLApp a:active {
+    border: 1px solid rgb(89, 164, 255);
 }
 .guide-DLApp a:hover {
     border-color: #333;

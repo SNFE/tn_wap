@@ -46,23 +46,6 @@ Webapp.postLoadData = function(url, data, success, error) {
 	});
 }
 
-Webapp.loadJsonData = function(url_src, callback, err_handle) {  //调用JSON数据
-	var timeOut = false; var ok = false;	
-	$.getJSON(url_src, function(jsondata) {				
-				if(!timeOut){								
-					ok = true;
-					callback(jsondata);			
-				}
-			});
-	setTimeout(function(){				
-		if(!ok) {			
-			timeOut = true;			
-			if(err_handle) err_handle(0);			 
-		}
-	},___invoke___interface___timeout___);
-}
-
-
 /* 更多理财产品滚动 */
 function ivtProdListSlide(){
 	var	liMr = parseInt($(".ivtProdList li").css("marginRight")),
@@ -127,17 +110,8 @@ function check() {
 	} else {
 		return true;
 	}
-	//TODO -> more validate..
 }
 
-/* reg input check */
-/*function regCheck(value, selector) {
-	var reg = '';
-	if(selector == 'uname') {
-		reg = /^([\u4E00-\u9FA5\uf900-\ufa2d]|[a-zA-Z])([\u4E00-\u9FA5\uf900-\ufa2d\.\·]|[a-zA-Z0-9_-]){3,19}$/;
-
-	}
-}*/
 
 /* get user info */
 function getAccount() {
@@ -249,10 +223,12 @@ $(function(){
 			Webapp.postLoadData('/auth.do', paramss,
 				function(data) {
 					console.log(data);
+										
 					window.location.href = '/wap/user-account.html';
 				}, 
 				function(e) {
 					console.log(e.desc);
+					alert(e.desc);
 			});
 		} else {
 			console.log('login validate error'); //for test
@@ -267,7 +243,7 @@ $(function(){
 			phone = $('#phone').val(),
 			validCode = $('#validCode').val(),
 			pw = $('#pw').val(),
-			regU = /^([\u4E00-\u9FA5\uf900-\ufa2d]|[a-zA-Z])([\u4E00-\u9FA5\uf900-\ufa2d\.\·]|[a-zA-Z0-9_-]){3,19}$/,
+			regU = /^([a-zA-Z])([a-zA-Z0-9_-]){3,19}$/,
 			regP = /^13[0-9]{9}$|14[0-9]{9}|15[0-9]{9}$|17[0-9]{9}|18[0-9]{9}$/,
 			regC = /^[0-9a-zA-Z]{6}$/,
 			regPw = /^(?![^a-zA-Z]+$)(?!\D+$).{6,20}$/;
@@ -283,13 +259,9 @@ $(function(){
 		} else if(regP.exec(phone) == null) {
 			alert('请输入正确的手机号码!');
 			return false;
-		} else if(pw == '') {
-			alert('请输入密码!');
+		} else if(regPw.exec(pw) == null) {
+			alert('密码格式不正确。要求6-20位字符，必须同时含有字母和数字!');
 			return false;
-			if(regPw.exec(pw) == null) {
-				alert('密码格式不正确。要求6-20位字符，必须同时含有字母和数字!');
-				return false;
-			}
 		} else if($('#pw-confirm').val() != pw) {
 			alert('两次密码不一致!');
 			return false;
@@ -349,12 +321,31 @@ $(function(){
 
 	$('#validCode').focus(function() {
 		var reg = /^13[0-9]{9}$|14[0-9]{9}|15[0-9]{9}$|17[0-9]{9}|18[0-9]{9}$/;
-		var flag = true;
+		var flag = false;
 		if(reg.exec($('#phone').val())) {
-			if($('#idCode').hasClass('flagCode')) {
-				$('.idCode').css({cursor: 'pointer', 'backgroundColor': '#59a4ff'}).removeAttr("disabled");
-				$('#idCode').removeClass('flagCode');
-			}
+			var params = {'param': $('#phone').val()};
+			Webapp.postLoadData('/auth_checker.do?type=phone', params,
+				function(data) {
+					console.log(data);
+				},
+				function(e) {
+					console.log(e);
+					if(e.responseText == 'y') {
+						flag = true;
+						console.log('cell phone is not reg, flag is: ' + flag);
+					} else {
+						alert("手机号码已存在");
+						$('#phone').focus();
+					}
+
+					if(flag) {
+						console.log('flag is: ' + flag);
+						if($('#idCode').hasClass('flagCode')) {
+							$('.idCode').css({cursor: 'pointer', 'backgroundColor': '#59a4ff'}).removeAttr("disabled");
+							$('#idCode').removeClass('flagCode');
+						}
+					}
+			});
 		} else {
 			alert("请填写手机号码");
 			$('#phone').focus();
@@ -443,7 +434,6 @@ $(function(){
 				function(e) {
 					console.log(e);
 			});
-
 			
 		} else {
 			console.log("not a phone number");
