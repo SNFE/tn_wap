@@ -1,100 +1,82 @@
 <!DOCTYPE HTML>
 <html lang="zh-CN">
-<head>
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, user-scalable=no" />
-<meta name="apple-mobile-web-app-capable" content="yes">
-<title></title>
-<link href="css/style.css" rel="stylesheet" type="text/css" />
-<link rel="stylesheet" type="text/css" href="css/animate.css">
-</head>
-<body>
-<header>
-    <div class="loader">Loading...</div>
-    <div class="dialogs-shadow"></div>
-	<a class="returnBack" href="index.html"></a>
-	<div class="signInUp">
-    	<a href="sign-up.html">注册</a>
-        <a href="javascript:;">登录</a>
-    </div>
-	<!-- <nav class="menu">
-    	<div>
-        	<a href="index.html">首页</a>
-            <a href="sign-up.html">注册</a>
-            <a href="sign-in.html">登录</a>
-            <a href="guide-line.html">指南</a>
-            <a href="tel:4009099888">问客服</a>
-            <a href="" class="app-link">下载APP</a>
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, user-scalable=no" />
+        <meta name="apple-mobile-web-app-capable" content="yes">
+        <title></title>
+        <link href="css/style.css" rel="stylesheet" type="text/css" />
+        <link rel="stylesheet" type="text/css" href="css/animate.css">
+    </head>
+    <body>
+        <header>
+            <div class="loader">Loading...</div>
+            <div class="dialogs-shadow"></div>
+        	<a class="returnBack" href="index.html"></a>
+        	<div class="signInUp">
+            	<a href="sign-up.html">注册</a>
+                <a href="javascript:;">登录</a>
+            </div>
+        </header>
+        <section class="banner">
+        	<img src="images/banner.png">
+        </section>
+        <div class="signForm">
+        	<div class="iptbox">
+            	<label>账户</label>
+                <input name="" class="uname" type="text" placeholder="请输入手机号/用户名">
+            </div>
+            <div class="iptbox">
+            	<label>密码</label>
+                <input name="" class="pw" type="password" placeholder="请输入密码">
+            </div>
+            <div class="mg-0-15">
+                <i class="fColor1"><br>提示：如忘记密码，请通过投哪网PC网站找回(touna.cn)<br></i>
+                <i class="fColor1" style="display:none;"><br>该手机对应多个用户名，请选择其中一个登录<br><br></i>
+                <div class="userIdBox">
+                    
+                </div>
+                <br><br>
+                <button id="loginBtn" class="btnBlueBig">登录</button>
+                <br>
+                <a href="sign-up.html" class="fs14 fColor3">没有账号？立即注册，有钱送！</a>
+            </div>
         </div>
-        <div>
-        	<a href="index.html">首页</a>
-            <a href="guide-line.html">指南</a>
-            <a href="tel:4009099888">问客服</a>
-            <a href="user-account.html">我的账户</a>
-            <a href="javascript:;">退出账户</a>
-            <a href="" class="app-link">下载APP</a>
-        </div>
-    </nav> -->
-</header>
-<section class="banner">
-	<img src="images/banner.png">
-</section>
-<div class="signForm">
-	<div class="iptbox">
-    	<label>账户</label>
-        <input name="" class="uname" type="text" placeholder="请输入手机号/用户名">
-    </div>
-    <div class="iptbox">
-    	<label>密码</label>
-        <input name="" class="pw" type="password" placeholder="请输入密码">
-    </div>
-    <div class="mg-0-15">
-        <i class="fColor1"><br>提示：如忘记密码，请通过投哪网PC网站找回(touna.cn)<br></i>
-        <i class="fColor1" style="display:none;"><br>该手机对应多个用户名，请选择其中一个登录<br><br></i>
-        <div class="userIdBox">
-            
-        </div>
-        <br><br>
-        <button id="loginBtn" class="btnBlueBig">登录</button>
-        <br>
-        <a href="sign-up.html" class="fs14 fColor3">没有账号？立即注册，有钱送！</a>
-    </div>
-</div>
-<aside class="guide-DLApp">
-	<a href="guide-line.html">投哪指南</a>
-    <a href="" class="app-link">APP下载</a>
-</aside>
-<footer>
-	<i class="logo-footer"></i><br>
-    深圳投哪金融服务有限公司<br>
-    Copyright Reserved 2011-2015<br>
-    <a href="javascript:;">移动站</a> | <a href="http://www.touna.cn/">电脑版</a>
-</footer>
-<script type="text/javascript" src="js/jquery.min.js"></script>
-<script type="text/javascript" src="js/jquery.md5.js"></script>
-<script type="text/javascript" src="js/common.js"></script>
-<script type="text/javascript" src="js/navigation.js"></script>
-<script type="text/javascript">
-    /* if login */
-    Webapp.postLoadData('/auth.do', {'method': 'isLogin'},
-        function(data) {
-            console.log(data);
-            if(data.result) {
-                window.location.href = '/wap/user-account.html';
-            }
-        }, 
-        function(e) {
-            console.log(e);
-    });
-</script>
-<script>
-var _hmt = _hmt || [];
-(function() {
-  var hm = document.createElement("script");
-  hm.src = "//hm.baidu.com/hm.js?877d00ba98baf5c36f459bcf71c90419";
-  var s = document.getElementsByTagName("script")[0]; 
-  s.parentNode.insertBefore(hm, s);
-})();
-</script>
-</body>
+        <aside class="guide-DLApp">
+        	<a href="guide-line.html">投哪指南</a>
+            <a href="" class="app-link">APP下载</a>
+        </aside>
+        <footer>
+        	<i class="logo-footer"></i><br>
+            深圳投哪金融服务有限公司<br>
+            Copyright Reserved 2011-2015<br>
+            <a href="javascript:;">移动站</a> | <a href="http://www.touna.cn/">电脑版</a>
+        </footer>
+        <script type="text/javascript" src="http://lib.sinaapp.com/js/jquery/1.10.1/jquery-1.10.1.min.js"></script>
+        <script type="text/javascript" src="js/jquery.md5.js"></script>
+        <script type="text/javascript" src="js/common.js"></script>
+        <script type="text/javascript" src="js/commonLog.js"></script>
+        <script type="text/javascript">
+            /* if login */
+            Webapp.postLoadData('/auth.do', {'method': 'isLogin'},
+                function(data) {
+                    console.log(data);
+                    if(data.result) {
+                        window.location.href = '/wap/user-account.html';
+                    }
+                }, 
+                function(e) {
+                    console.log(e);
+            });
+        </script>
+        <script>
+        var _hmt = _hmt || [];
+        (function() {
+          var hm = document.createElement("script");
+          hm.src = "//hm.baidu.com/hm.js?877d00ba98baf5c36f459bcf71c90419";
+          var s = document.getElementsByTagName("script")[0]; 
+          s.parentNode.insertBefore(hm, s);
+        })();
+        </script>
+    </body>
 </html>
