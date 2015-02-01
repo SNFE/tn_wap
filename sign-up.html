@@ -103,20 +103,6 @@
 <script type="text/javascript" src="js/jquery.md5.js"></script>
 <script type="text/javascript" src="js/navigation.js"></script>
 <script type="text/javascript" src="js/common.js"></script>
-<script type="text/javascript">
-    $(function() {
-        Webapp.postLoadData('/auth.do', {'method': 'isLogin'},
-        function(data) {
-            console.log(data);
-            if(data.result) {
-                window.location.href = '/wap/user-account.html';
-            }
-        }, 
-        function(e) {
-            
-        });
-    });
-</script>
 <script>
 var _hmt = _hmt || [];
 (function() {

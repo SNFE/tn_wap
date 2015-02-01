@@ -91,8 +91,8 @@ function ivtProdListSlide(){
 
 /* login input validate */
 function check() {
-	var reg_un = /[a-zA-Z0-9_-]{4,20}/g;
-	//var	reg_pw = /[]/g;
+	var reg_un = /[a-zA-Z0-9_-]{4,20}/g,
+		reg_pw = /^(?![^a-zA-Z]+$)(?!\D+$).{6,20}$/;
 
 	if($('.uname').val() == '' || $('.uname').val() == null) {
 		alert('请输入用户名');
@@ -107,11 +107,14 @@ function check() {
 		alert('请输入密码');
 		$('.pw').focus();
 		return false;
+	} else if(reg_pw.exec($('.pw').val()) == null) {
+		alert('密码格式不正确');
+		$('.pw').focus();
+		return false;
 	} else {
 		return true;
 	}
 }
-
 
 /* get user info */
 function getAccount() {
@@ -194,6 +197,9 @@ $(function(){
 	/* 登录 */
 	$('#loginBtn').click(function() {
 		if(check()) {
+			$('.loader').css('display', 'block');
+			$('.dialogs-shadow').css('display', 'block')
+			
 			var date = new Date();
 			date = date.getFullYear() + '-' + date.getMonth()+1 + '-' + date.getDate();
 
@@ -223,12 +229,14 @@ $(function(){
 			Webapp.postLoadData('/auth.do', paramss,
 				function(data) {
 					console.log(data);
-										
+					/*$('.loader').css('display', 'block');
+					$('.dialogs-shadow').css('display', 'block');	*/		
 					window.location.href = '/wap/user-account.html';
 				}, 
 				function(e) {
 					console.log(e.desc);
 					alert(e.desc);
+					window.location.href = '/wap/sign-in.html';
 			});
 		} else {
 			console.log('login validate error'); //for test

@@ -158,7 +158,7 @@ header .topLogo {
     height: 20px;
     margin: 12px auto 0;
     display: block;
-    background: url(../img/logo-top.png) no-repeat 0 0 / 125px auto;
+    background: url(../img/logo-top.jpg) no-repeat 0 0 / 125px auto;
 }
 header .menu, header .menu:after {
     width: 22px;
@@ -621,11 +621,11 @@ a.fColor3[href="sign-up.html"]:hover{color:#fff;background:#ff6c6c;}
     border-radius: 3px;
     background: #fff;
 }
-.guide-DLApp a:active {
-    border: 1px solid rgb(89, 164, 255);
-}
 .guide-DLApp a:hover {
     border-color: #333;
+}
+.guide-DLApp a:active {
+    border: 1px solid rgb(89, 164, 255);
 }
 /* 用户体验金bar */
 
