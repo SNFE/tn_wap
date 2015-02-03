@@ -40,20 +40,20 @@ $(function() {
     });*/
 
     Webapp.postLoadData('/auth.do', {'method': 'isLogin'},
-    function(data) {
-        if(!data.result) {
-            $("header .menu").click(function() {
-                $("div",this).eq(0).slideToggle(100);
-            });
-            $('.topLogin').show();
-        } else {
-            $("header .menu").click(function() {
-                $("div",this).eq(1).slideToggle(100);
-            });
-            $('.topLogin').html('账户').attr('href', 'user-account.html');
-        }    
-    }, 
-    function(e) {
+        function(data) {
+            if(!data.result) {
+                $("header .menu").click(function() {
+                    $("div",this).eq(0).slideToggle(100);
+                });
+                $('.topLogin').show();
+            } else {
+                $("header .menu").click(function() {
+                    $("div",this).eq(1).slideToggle(100);
+                });
+                $('.topLogin').html('账户').attr('href', 'user-account.html');
+            }    
+        }, 
+        function(e) {
         
     });
 

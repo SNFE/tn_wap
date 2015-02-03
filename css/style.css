@@ -151,14 +151,16 @@ header .loginBtn {
     left: 15px;
     top: 13px;
     color: #fff;
-    background: url(../img/login-icon.png) no-repeat 0 0 / auto 100%;
+    background: url(../img/login-icon.png) no-repeat 0 0;
+	background-size:auto 100%;
 }
 header .topLogo {
     width: 125px;
     height: 20px;
     margin: 12px auto 0;
     display: block;
-    background: url(../img/logo-top.jpg) no-repeat 0 0 / 125px auto;
+    background: url(../img/logo-top.png);
+	background-size:125px auto;
 }
 header .menu, header .menu:after {
     width: 22px;
@@ -227,7 +229,7 @@ header .returnBack:after {
     border-right-color: #666 !important;
 }
 header .signInUp {
-    width: 47%;
+    width: 48%;
     height: 24px;
     line-height: 24px;
     margin: 9px auto 0;
@@ -362,10 +364,12 @@ header .pageTitle {
 .hotTender .icons {
     margin-right: 20px;
     float: left;
-    background: #3397ff url(../img/hottender-icon1.png) no-repeat 10px 10px / 28px 18px;
+    background: #3397ff url(../img/hottender-icon1.png) no-repeat 10px 10px;
+	background-size:28px 18px;
 }
 .hotTender:nth-of-type(2) .icons {
-    background: #3397ff url(../img/hottender-icon2.png) no-repeat 50% 50% / 16px 24px;
+    background: #3397ff url(../img/hottender-icon2.png) no-repeat 50% 50%;
+	background-size:16px 24px;
 }
 .hotTender:nth-of-type(3) .icons {
     background-image: none;
@@ -486,7 +490,8 @@ footer .logo-footer {
     height: 22px;
     margin: 10px 0px 2px;
     display: inline-block;
-    background: url(../img/logo-footer.png) 0 0 / cover;
+    background: url(../img/logo-footer.png);
+	background-size:cover;
 }
 /* 投哪APP下载bar */
 
@@ -507,7 +512,8 @@ footer .logo-footer {
     height: 27px;
     margin: 6px 10px 0;
     float: left;
-    background: url(../img/touna-app-icon.png) 0 0 / cover;
+    background: url(../img/touna-app-icon.png);
+	background-size:cover;
 }
 .appDownloadBar em {
     font-size: 16px;
@@ -602,7 +608,7 @@ footer .logo-footer {
     font-size: 14px;
     border-radius: 3px;
     cursor: default;
-    background: rgb(182, 184, 185);
+    background:#ccc;
 }
 a.fColor3[href="sign-up.html"]:hover{color:#fff;background:#ff6c6c;}
 /* 投哪指南+app下载 btnBar */
@@ -622,10 +628,7 @@ a.fColor3[href="sign-up.html"]:hover{color:#fff;background:#ff6c6c;}
     background: #fff;
 }
 .guide-DLApp a:hover {
-    border-color: #333;
-}
-.guide-DLApp a:active {
-    border: 1px solid rgb(89, 164, 255);
+    border: 1px solid #59a4ff;
 }
 /* 用户体验金bar */
 
@@ -645,11 +648,11 @@ a.fColor3[href="sign-up.html"]:hover{color:#fff;background:#ff6c6c;}
     border-top-color: #f7f7f7;
 }
 .xpRules:before, .xpRules:after, .userIdBox:before, .userIdBox:after, .guideLineQApage .guideLineQA a:after, .expense > div:before {
-    -webkit-transition: all .39s linear;
-    -moz-transition: all .39s linear;
-    -ms-transition: all .39s linear;
-    -o-transition: all .39s linear;
-    transition: all .39s linear;
+    -webkit-transition: all .25s linear;
+    -moz-transition: all .25s linear;
+    -ms-transition: all .25s linear;
+    -o-transition: all .25s linear;
+    transition: all .25s linear;
 }
 .xpRulesOpen:before, .xpRulesOpen:after, .userIdBoxOpen:before, .userIdBoxOpen:after {
     -webkit-transform: rotateX(180deg);
@@ -721,7 +724,8 @@ a.fColor3[href="sign-up.html"]:hover{color:#fff;background:#ff6c6c;}
     float: left;
     text-align: center;
     font-size: 14px;
-    background: url(../img/guide-line-icon1.png) no-repeat 50% 0 / 50px 50px;
+    background: url(../img/guide-line-icon1.png) no-repeat 50% 0;
+	background-size:50px 50px;
 }
 .guideLineNav a:nth-of-type(2) {
     background-image: url(../img/guide-line-icon2.png);
@@ -759,7 +763,8 @@ a.fColor3[href="sign-up.html"]:hover{color:#fff;background:#ff6c6c;}
     position: absolute;
     right: -10px;
     top: 2px;
-    background: url(../img/arrow1.png) 0 0 / cover;
+    background: url(../img/arrow1.png);
+	background-size:cover;
 }
 .guideLineQApage .guideLineQA .open a:after, .expense > .open:before {
     -webkit-transform: rotate(180deg);
@@ -804,4 +809,154 @@ a.fColor3[href="sign-up.html"]:hover{color:#fff;background:#ff6c6c;}
 .expense > div:before {
     right: 10px;
     top: 12px;
+}
+
+/* 通用loading */
+.loading {
+	width:70px;
+	margin:-50px 0 0 -35px;
+	display:none;
+    position: fixed;
+	left:50%;
+	top:50%;
+    z-index: 9200;
+	text-align:center;
+	text-shadow:0 0 3px rgba(0,0,0,.3),0 0 1px #fff;
+	color:#000;
+	font-size:20px;
+}
+.loading i{
+	width:6px;
+	height:22px;
+	margin:10px 2px;
+	display:inline-block;
+	overflow:hidden;
+	border-radius:10px;
+	border:1px solid #fff;
+	box-shadow:0 0 3px rgba(0,0,0,.2);
+	background:#3397ff;
+	-webkit-animation:loading .9s infinite ease-in-out;
+	-moz-animation:loading .9s infinite ease-in-out;
+	-ms-animation:loading .9s infinite ease-in-out;
+	-o-animation:loading .9s infinite ease-in-out;
+	animation:loading .9s infinite ease-in-out;
+}
+.loading i:nth-of-type(2){
+	-webkit-animation-delay:0.1s;
+	-moz-animation-delay:0.1s;
+	-ms-animation-delay:0.1s;
+	-o-animation-delay:0.1s;
+	animation-delay:0.1s;
+}
+.loading i:nth-of-type(3){
+	-webkit-animation-delay:0.2s;
+	-moz-animation-delay:0.2s;
+	-ms-animation-delay:0.2s;
+	-o-animation-delay:0.2s;
+	animation-delay:0.2s;
+}
+.loading i:nth-of-type(4){
+	-webkit-animation-delay:0.3s;
+	-moz-animation-delay:0.3s;
+	-ms-animation-delay:0.3s;
+	-o-animation-delay:0.3s;
+	animation-delay:0.3s;
+}
+.loading i:nth-of-type(5){
+	-webkit-animation-delay:0.4s;
+	-moz-animation-delay:0.4s;
+	-ms-animation-delay:0.4s;
+	-o-animation-delay:0.4s;
+	animation-delay:0.4s;
+}
+@-webkit-keyframes loading {
+	0%,70%,100%{
+		-webkit-transform:scaleY(1);
+		-moz-transform:scaleY(1);
+		-ms-transform:scaleY(1);
+		-o-transform:scaleY(1);
+		transform:scaleY(1);
+	}
+	35%{
+		-webkit-transform:scaleY(2.3);
+		-moz-transform:scaleY(2.3);
+		-ms-transform:scaleY(2.3);
+		-o-transform:scaleY(2.3);
+		transform:scaleY(2.3);
+	}
+}
+@-moz-keyframes loading {
+	0%,70%,100%{
+		-webkit-transform:scaleY(1);
+		-moz-transform:scaleY(1);
+		-ms-transform:scaleY(1);
+		-o-transform:scaleY(1);
+		transform:scaleY(1);
+	}
+	35%{
+		-webkit-transform:scaleY(2.3);
+		-moz-transform:scaleY(2.3);
+		-ms-transform:scaleY(2.3);
+		-o-transform:scaleY(2.3);
+		transform:scaleY(2.3);
+	}
+}
+@-ms-keyframes loading {
+	0%,70%,100%{
+		-webkit-transform:scaleY(1);
+		-moz-transform:scaleY(1);
+		-ms-transform:scaleY(1);
+		-o-transform:scaleY(1);
+		transform:scaleY(1);
+	}
+	35%{
+		-webkit-transform:scaleY(2.3);
+		-moz-transform:scaleY(2.3);
+		-ms-transform:scaleY(2.3);
+		-o-transform:scaleY(2.3);
+		transform:scaleY(2.3);
+	}
+}
+@-o-keyframes loading {
+	0%,70%,100%{
+		-webkit-transform:scaleY(1);
+		-moz-transform:scaleY(1);
+		-ms-transform:scaleY(1);
+		-o-transform:scaleY(1);
+		transform:scaleY(1);
+	}
+	35%{
+		-webkit-transform:scaleY(2.3);
+		-moz-transform:scaleY(2.3);
+		-ms-transform:scaleY(2.3);
+		-o-transform:scaleY(2.3);
+		transform:scaleY(2.3);
+	}
+}
+@keyframes loading {
+	0%,70%,100%{
+		-webkit-transform:scaleY(1);
+		-moz-transform:scaleY(1);
+		-ms-transform:scaleY(1);
+		-o-transform:scaleY(1);
+		transform:scaleY(1);
+	}
+	35%{
+		-webkit-transform:scaleY(2.3);
+		-moz-transform:scaleY(2.3);
+		-ms-transform:scaleY(2.3);
+		-o-transform:scaleY(2.3);
+		transform:scaleY(2.3);
+	}
+}
+/* 通用遮罩 */
+.mask {
+	width:100%;
+	height:100%;
+	display:none;
+	position:fixed;
+	left:0;
+	top:0;
+	z-index:9100;
+	background:rgba(255,255,255,.5);
 }

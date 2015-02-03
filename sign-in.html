@@ -6,12 +6,9 @@
         <meta name="apple-mobile-web-app-capable" content="yes">
         <title></title>
         <link href="css/style.css" rel="stylesheet" type="text/css" />
-        <link rel="stylesheet" type="text/css" href="css/animate.css">
     </head>
     <body>
         <header>
-            <div class="loader">Loading...</div>
-            <div class="dialogs-shadow"></div>
         	<a class="returnBack" href="index.html"></a>
         	<div class="signInUp">
             	<a href="sign-up.html">注册</a>
@@ -47,28 +44,17 @@
             <a href="" class="app-link">APP下载</a>
         </aside>
         <footer>
-        	<i class="logo-footer"></i><br>
+        	<a href="index.html" class="logo-footer"></a><br>
             深圳投哪金融服务有限公司<br>
             Copyright Reserved 2011-2015<br>
             <a href="javascript:;">移动站</a> | <a href="http://www.touna.cn/">电脑版</a>
         </footer>
-        <script type="text/javascript" src="http://lib.sinaapp.com/js/jquery/1.10.1/jquery-1.10.1.min.js"></script>
+        <div class="mask"></div>
+        <div class="loading"><i></i><i></i><i></i><i></i><i></i><br>加载中</div>
+        <script type="text/javascript" src="js/jquery.min.js"></script>
         <script type="text/javascript" src="js/jquery.md5.js"></script>
         <script type="text/javascript" src="js/common.js"></script>
         <script type="text/javascript" src="js/commonLog.js"></script>
-        <script type="text/javascript">
-            /* if login */
-            Webapp.postLoadData('/auth.do', {'method': 'isLogin'},
-                function(data) {
-                    console.log(data);
-                    if(data.result) {
-                        window.location.href = '/wap/user-account.html';
-                    }
-                }, 
-                function(e) {
-                    console.log(e);
-            });
-        </script>
         <script>
         var _hmt = _hmt || [];
         (function() {

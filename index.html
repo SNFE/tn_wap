@@ -120,7 +120,7 @@
             <img src="images/partner6.jpg">
         </section>
         <footer>
-        	<i class="logo-footer"></i><br>
+        	<a href="index.html" class="logo-footer"></a><br>
             深圳投哪金融服务有限公司<br>
             Copyright Reserved 2011-2015<br>
             <a href="javascript:;">移动站</a> | <a href="http://www.touna.cn/">电脑版</a>
@@ -129,11 +129,28 @@
         	<i>&times;</i>
         	<a href="http://file.touna.cn/app/touna_licai_gwwap.apk" class="app-link-index"><em class="fColor2">投哪网理财</em> 投资挣钱，请点击下载APP</a>
         </aside>
-        <script type="text/javascript" src="http://lib.sinaapp.com/js/jquery/1.10.1/jquery-1.10.1.min.js"></script>
+        <script type="text/javascript" src="js/jquery.min.js"></script>
         <script type="text/javascript" src="js/common.js"></script>
-        <script type="text/javascript" src="js/navigation.js"></script>
         <script type="text/javascript">   
             (function() {
+                Webapp.postLoadData('/auth.do', {'method': 'isLogin'},
+                    function(data) {
+                        if(!data.result) {
+                            $("header .menu").click(function() {
+                                $("div",this).eq(0).slideToggle(100);
+                            });
+                            $('.topLogin').show();
+                        } else {
+                            $("header .menu").click(function() {
+                                $("div",this).eq(1).slideToggle(100);
+                            });
+                            $('.topLogin').html('账户').attr('href', 'user-account.html');
+                        }    
+                    }, 
+                    function(e) {
+                    
+                });
+                
                 var today = new Date();
                 var url = "/jsonfile/index_stat.html?t=" + today.getFullYear() + today.getMonth() + 1 + today.getDate();
                 var timeOut = false; var ok = false;    

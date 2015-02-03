@@ -8,7 +8,7 @@
 		pw = $('#pw').val(),
 		regU = /^([a-zA-Z])([a-zA-Z0-9_-]){3,19}$/,
 		regP = /^13[0-9]{9}$|14[0-9]{9}|15[0-9]{9}$|17[0-9]{9}|18[0-9]{9}$/,
-		regC = /^[0-9a-zA-Z]{6}$/,
+		regC = /^[0-9]{6}$/,
 		regPw = /^(?![^a-zA-Z]+$)(?!\D+$).{6,20}$/;
 	if(regU.exec(uname) == null) {
 		alert('请输入正确的用户名!');
@@ -19,11 +19,12 @@
 	} else if(regC.exec(validCode) == null) {
 		alert('请输入正确的验证码!');
 		return false;
-	} else if(regP.exec(phone) == null) {
-		alert('请输入正确的手机号码!');
-		return false;
 	} else if(regPw.exec(pw) == null) {
 		alert('密码格式不正确。要求6-20位字符，必须同时含有字母和数字!');
+		return false;
+	} else if((/\s+/g).exec(pw)) {
+		alert('密码不能有空格');
+		$('.pw').focus();
 		return false;
 	} else if($('#pw-confirm').val() != pw) {
 		alert('两次密码不一致!');
@@ -33,6 +34,10 @@
 	}
 
 	if(flag) {
+
+		$('.loading').css('display', 'block');
+		$('.mask').css('display', 'block');
+		
 		/* reg */
 		var params = {
 			'method': 'registerByPhone',
@@ -51,7 +56,7 @@
 
 				/* collect */
 				var visitdate = new Date();
-				visitdate = visitdate.getFullYear() + '-' + visitdate.getMonth()+1 + '-' + visitdate.getDate();
+				visitdate = visitdate.getFullYear() + '-' + (visitdate.getMonth()+1) + '-' + visitdate.getDate();
 
 				var params = {
 					'method': 'addAppMobileUserView',
@@ -74,6 +79,12 @@
 			function(e) {
 				console.log(e);
 				alert(e.desc);
+				$('.loading').css('display', 'none');
+				$('.mask').css('display', 'none');
+
+				$('#validCode').val('');
+				$('#pw').val('');
+				$('#pw-confirm').val('');
 				$('.regBtn').css({cursor: 'pointer', 'backgroundColor': '#59a4ff'}).removeAttr("disabled");
 		});
 	} else {
@@ -85,7 +96,9 @@
 $('#validCode').focus(function() {
 	var reg = /^13[0-9]{9}$|14[0-9]{9}|15[0-9]{9}$|17[0-9]{9}|18[0-9]{9}$/;
 	var flag = false;
-	if(reg.exec($('#phone').val())) {
+	if($('#phone').val() == '' || $('#phone').val() == null) {
+		alert("请填写手机号码");
+	} else if(reg.exec($('#phone').val())) {
 		var params = {'param': $('#phone').val()};
 		Webapp.postLoadData('/auth_checker.do?type=phone', params,
 			function(data) {
@@ -110,7 +123,7 @@ $('#validCode').focus(function() {
 				}
 		});
 	} else {
-		alert("请填写手机号码");
+		alert("请输入正确的手机号码!");
 		$('#phone').focus();
 	}
 });
