@@ -140,7 +140,7 @@ $(function(){
 	$(".guideLineQApage .guideLineQA li,.expense > div").click(function(){
 		$(".guideLineQApage .guideLineQA li article,.expense > div article").not($("article",this)).slideUp();
 		$(".guideLineQApage .guideLineQA li,.expense > div").not($(this)).removeClass("open");
-		$("article",this).slideToggle();
+		$("article",this).slideToggle(200);
 		$(this).toggleClass("open");
 	});
 
@@ -165,13 +165,13 @@ $(function(){
         } else if(userAgent.match(/Windows Phone/i)) {
             result = 'Windows Phone';
         } else {
-            result = '';
+            result = 'Other';
         }
 
         if(userAgent.match(/iPhone|iPad/i)) {
-             appLink = 'http://um0.cn/8ArgH/';
+            appLink = 'http://um0.cn/8ArgH/';
         } else if(userAgent.match(/Android/i)) {
-             appLink = 'http://file.touna.cn/app/touna_licai_gwwap.apk';
+            appLink = 'http://file.touna.cn/app/touna_licai_gwwap.apk';
         } else {
             appLink = 'http://file.touna.cn/app/touna_licai_gwwap.apk';
         }

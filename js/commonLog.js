@@ -1,5 +1,18 @@
+/* if login */
+;Webapp.postLoadData('/auth.do', {'method': 'isLogin'},
+    function(data) {
+        console.log(data);
+        if(data.result) {
+        	alert("已登录！");
+            window.location.href = '/wap/user-account.html';
+        }
+    }, 
+    function(e) {
+        console.log(e);
+});
+
 /* login input validate */
-;function check() {
+function check() {
 	var reg_un = /^([a-zA-Z])([a-zA-Z0-9_-]){3,19}|(13[0-9]{9}$|14[0-9]{9}|15[0-9]{9}$|17[0-9]{9}|18[0-9]{9})$/,
 		reg_pw = /^(?![^a-zA-Z]+$)(?!\D+$).{6,20}$/;
 

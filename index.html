@@ -154,7 +154,7 @@
                 var today = new Date();
                 var url = "/jsonfile/index_stat.html?t=" + today.getFullYear() + today.getMonth() + 1 + today.getDate();
                 var timeOut = false; var ok = false;    
-                $.getJSON(url, function(jsondata) {             
+                $.getJSON(url, function(jsondata) {
                      if(!timeOut){                               
                         ok = true;
                         console.log(jsondata);

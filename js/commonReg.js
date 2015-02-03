@@ -1,5 +1,18 @@
+/* if login */
+;Webapp.postLoadData('/auth.do', {'method': 'isLogin'},
+    function(data) {
+        console.log(data);
+        if(data.result) {
+        	alert("已登录！");
+            window.location.href = '/wap/user-account.html';
+        }
+    }, 
+    function(e) {
+        console.log(e);
+});
+
 /* 注册 */
-;$('.regBtn').click(function() {
+$('.regBtn').click(function() {
 	var flag = false;
 
 	var uname = $('#uname').val(),
@@ -23,7 +36,7 @@
 		alert('密码格式不正确。要求6-20位字符，必须同时含有字母和数字!');
 		return false;
 	} else if((/\s+/g).exec(pw)) {
-		alert('密码不能有空格');
+		alert('密码不能有空格!');
 		$('.pw').focus();
 		return false;
 	} else if($('#pw-confirm').val() != pw) {
