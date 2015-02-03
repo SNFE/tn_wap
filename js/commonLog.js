@@ -92,7 +92,7 @@ $('#loginBtn').click(function() {
 				alert(e.desc);
 				$('.loading').css('display', 'none');
 				$('.mask').css('display', 'none');
-				window.location.href = '/wap/sign-in.html';
+				$('.pw').val('');
 		});	
 	} else {
 		console.log('login validate error'); //for test

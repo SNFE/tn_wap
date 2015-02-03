@@ -87,6 +87,7 @@ $('.regBtn').click(function() {
 						console.log(e);
 				});
 
+				alert("注册成功!");
 				window.location.href = '/wap/user-account.html';
 			},
 			function(e) {
