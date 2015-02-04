@@ -1,0 +1,23 @@
+{
+  "name": "wap-touna",
+  "version": "0.1.0-a",
+  "auther": "jodie",
+  "description": "touna wap",
+  "dependencies": {
+    "gulp": "*",
+    "gulp-jshint": "*",
+    "gulp-util": "*",
+    "gulp-uglify": "*",
+    "gulp-concat": "*",
+    "gulp-rimraf": "*",
+    "gulp-clean": "*",
+    "event-stream": "*",
+    "gulp-minify-html": "*",
+    "gulp-changed": "*",
+    "gulp-minify-css": "*",
+    "gulp-rev-append": "*"
+  },
+  "devDependencies": {
+    "gulp": "^3.8.9"
+  }
+}

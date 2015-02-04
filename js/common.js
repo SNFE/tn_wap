@@ -89,6 +89,57 @@ function ivtProdListSlide(){
 	});
 };
 
+//coll - begin
+var adsFollow = function(utm_source, utm_medium, utm_term, utm_content, utm_campaign) {
+    var args = {
+    	"method":"adsFollowRegester",
+    	"utmSource":utm_source,
+    	"utmMedium":utm_medium,
+    	"utmTerm":utm_term,
+    	"utmContent":utm_content,
+    	"utmCampaign":utm_campaign
+    };
+
+    Webapp.postLoadData('/auth.do', args,
+        function(data) {}, 
+        function(e) {}
+    );
+}
+
+function getUrl(n) {        
+	var hrefstr, pos, parastr, para, tempstr;
+    hrefstr = window.location.href;
+    pos = hrefstr.indexOf("?");
+    parastr = hrefstr.substring(pos + 1);
+    para = parastr.split("&");
+    tempstr = "";
+    for (var i = 0; i < para.length; i++) {
+        tempstr = para[i];
+        pos = tempstr.indexOf("=");
+        if (tempstr.substring(0, pos).toLowerCase() == n.toLowerCase()) {
+            return decodeURIComponent(tempstr.substring(pos + 1));
+        }
+    }        
+    return null;
+}
+
+function getPrevUrl(n) {
+	var prevUrl, pos, parastr, para, tempstr;
+	prevUrl = document.referrer;
+	pos = prevUrl.indexOf("?");
+    parastr = prevUrl.substring(pos + 1);
+    para = parastr.split("&");
+    tempstr = "";
+    for (var i = 0; i < para.length; i++) {
+        tempstr = para[i];
+        pos = tempstr.indexOf("=");
+        if (tempstr.substring(0, pos).toLowerCase() == n.toLowerCase()) {
+            return decodeURIComponent(tempstr.substring(pos + 1));
+        }
+    }
+    return null;
+}
+
 /* 登出 */
 function logout() {
     Webapp.postLoadData('/auth.do', {'method': 'logout'},
@@ -97,10 +148,34 @@ function logout() {
         }, 
         function(e) {
            
-       });
+        }
+    );
 }
 
-$(function(){
+$(function() {
+
+	//if login
+    Webapp.postLoadData('/auth.do', {'method': 'isLogin'},
+        function(data) {
+            if(!data.result) {
+                $("header .menu").click(function() {
+                    $("div",this).eq(0).slideToggle(100);
+                });
+                $('.topLogin').show();
+            } else {
+                $("header .menu").click(function() {
+                    $("div",this).eq(1).slideToggle(100);
+                });
+                $('.topLogin').html('账户').attr('href', 'user-account.html');
+            }    
+        }, 
+        function(e) {
+        	$("header .menu").click(function() {
+                $("div",this).eq(0).slideToggle(100);
+            });
+            $('.topLogin').show();  
+        }
+    );
 
 	/* 更多理财产品滚动 */
 	ivtProdListSlide();
@@ -120,15 +195,6 @@ $(function(){
 		$("aside",this).slideToggle();
 		$(this).toggleClass("userIdBoxOpen");
 	});
-	
-	/*$(".userIdBox i").each(function(){
-		$(this).click(function(evt){
-			evt.stopPropagation();
-			$(".userIdBox em").text($(this).text());
-			$(".userIdBox aside").slideUp();
-			$(".userIdBox").toggleClass("userIdBoxOpen");
-		})
-	});*/
 	
 	/* 用户体验金bar */
 	$(".xpRules").click(function(){
@@ -196,4 +262,68 @@ $(function(){
     $('a.app-link').attr("href", appLink);
 
     $('a.appDownloadBar').attr("href", appLink);
+
+   
+    //coll begin
+    /* 网址跟踪 */
+    if(getUrl("utm_source")) {
+    	adsFollow(getUrl("utm_source"),getUrl("utm_medium"),getUrl("utm_term"),getUrl("utm_content"),getUrl("utm_campaign")); 
+    }
+
+    var collDate = new Date();
+	var month = '';
+	var day = '';
+	if((collDate.getMonth()+1)<10) {
+		month = '0'+(collDate.getMonth()+1).toString();
+	}
+	if(collDate.getDate() < 10) {
+		day = '0' + collDate.getDate().toString();
+	}
+	collDate = collDate.getFullYear() + '-' + month + '-' + day;
+
+	/* 渠道统计 */
+    if(getUrl('channelid')) {    
+	    var params = {
+	        'method': 'addChannelView',
+	        'channelid': getUrl('channelid') ,
+	        'regviewpv': getUrl('regviewpv') ,
+	        'allpv': getUrl('allpv'),
+	        'regcount': getUrl('regcount'),
+	        'downloadapp': getUrl('downloadapp'),
+	        'appdate': collDate,
+	        'regpage': getUrl('regpage')
+	    }
+
+	    Webapp.postLoadData('/appMobile.do', params,
+	        function(data) {
+	            console.log(data);
+	        }, 
+	        function(e) {
+	            console.log(e);
+	    });
+	} 
+
+	if(document.referrer != '') {
+		if(getPrevUrl('channelid')) {
+			var params = {
+		        'method': 'addChannelView',
+		        'channelid': getPrevUrl('channelid') ,
+		        'regviewpv': getPrevUrl('regviewpv') ,
+		        'allpv': getPrevUrl('allpv'),
+		        'regcount': getPrevUrl('regcount'),
+		        'downloadapp': getPrevUrl('downloadapp'),
+		        'appdate': collDate,
+		        'regpage': getPrevUrl('regpage')
+		    }
+
+		    Webapp.postLoadData('/appMobile.do', params,
+		        function(data) {
+		            console.log(data);
+		        }, 
+		        function(e) {
+		            console.log(e);
+		    });
+		}
+	}
+	//coll - end
 });

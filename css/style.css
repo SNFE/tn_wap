@@ -57,10 +57,11 @@ table {
 .fColor2, .accountInfo li i, .userIdBox aside i:hover, .guideLineNav a:hover, .guideLineQA a:hover, .guideLineQApage .guideLineQA .open a, .accountInfo + a[href="about-exp.html"] {
     color: #59a4ff;
 }
-.fColor3{color:#ff6c6c;}
-.fs14 {
+.fColor3,.borrowingTypeCon i{color:#ff6c6c;}
+.fs14{
     font-size: 14px;
 }
+.mg-15,.serviceTel{margin:15px;}
 .mg-5-15 {
     margin: 0 5px 15px;
 }
@@ -535,7 +536,7 @@ footer .logo-footer {
     border-bottom: 1px solid #d9dde2;
     background: #fff;
 }
-.iptbox label, .iptbox input, .userIdBox {
+.iptbox label, .iptbox input, .userIdBox, .iptbox cite.fr {
     height: 42px;
     line-height: 42px;
     float: left;
@@ -549,6 +550,10 @@ footer .logo-footer {
     width: 70%;
 	line-height:normal;
     border: none;
+}
+.iptbox cite.fr {
+	padding-right:15px;
+    float:right;
 }
 .userIdBox {
     margin: 0 -15px;
@@ -596,7 +601,7 @@ footer .logo-footer {
     border-bottom: 1px solid #d9dde2;
     background: rgba(255, 255, 255, .9);
 }
-.idCodeBox input, .idCodeBox .idCode {
+.idCodeBox input, .idCodeBox .idCode,.rapidBorrowing .rbMoney,.rapidBorrowing .VCode{
     width: 35%;
 }
 .idCodeBox .idCode {
@@ -609,7 +614,7 @@ footer .logo-footer {
     font-size: 14px;
     border-radius: 3px;
     cursor: default;
-    background:#ccc;
+    background:#59a4ff;
 }
 a.fColor3[href="sign-up.html"]:hover{color:#fff;background:#ff6c6c;}
 /* 投哪指南+app下载 btnBar */
@@ -961,3 +966,17 @@ a.fColor3[href="sign-up.html"]:hover{color:#fff;background:#ff6c6c;}
 	z-index:9100;
 	background:rgba(255,255,255,.5);
 }
+/* 极速借款 */
+.borrowingTypeTab{padding:5px 0;text-align:center;border-bottom: 1px solid #d9dde2;background:#fff;}
+.borrowingTypeTab li{width:80px;height:30px;line-height:30px;margin:10px;display:inline-block;color:#fff;font-size:16px;border-radius:5px;background:#59a4ff;}
+.borrowingTypeTab .cur{background:#4779b6;}
+.borrowingTypeCon{line-height:20px;padding:10px 15px;display:none;border-bottom: 1px solid #d9dde2;background:#fff;}
+.rapidBorrowing .VCode{}
+.rapidBorrowing .VCodePic{width:73px;height:34px;margin-top:4px;}
+
+
+
+
+/* 客服电话 */
+.serviceTel p{margin-bottom:7px;padding-left:16px;background:url(../img/icon-phone.png) no-repeat 0 50%;background-size:12px 12px;}
+.serviceTel a{color:#59a4ff;}

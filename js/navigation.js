@@ -1,44 +1,7 @@
 'use strict';
 
 $(function() {
-
-    //more coll
-    /*function getUrl(n) {
-        var hrefstr, pos, parastr, para, tempstr;
-        hrefstr = window.location.href;
-        pos = hrefstr.indexOf("?");
-        parastr = hrefstr.substring(pos + 1);
-        para = parastr.split("&");
-        tempstr = "";
-        for (var i = 0; i < para.length; i++) {
-            tempstr = para[i];
-            pos = tempstr.indexOf("=");
-            if (tempstr.substring(0, pos).toLowerCase() == n.toLowerCase()) {
-                return decodeURIComponent(tempstr.substring(pos + 1));
-            }
-        }
-        return null;
-    }
-
-    var date = new Date();
-    var params = {
-        'method': 'addChannelView',
-        'channelid': getUrl('channelid') || 'A00000',
-        'regviewpv': getUrl('regviewpv') || 1,
-        'allpv': getUrl('allpv') || 1,
-        'regcount': getUrl('regcount') || 1,
-        'downloadapp': getUrl('downloadapp') || 1,
-        'appdate': date = date.getFullYear() + '-' + date.getMonth()+1 + '-' + date.getDate(),
-        'regpage': getUrl('regpage') || 1
-    }
-    Webapp.postLoadData('/appMobile.do', params,
-        function(data) {
-            console.log("collection is done");
-        }, 
-        function(e) {
-            console.log(e);
-    });*/
-
+    //if login
     Webapp.postLoadData('/auth.do', {'method': 'isLogin'},
         function(data) {
             if(!data.result) {
@@ -53,9 +16,8 @@ $(function() {
                 $('.topLogin').html('账户').attr('href', 'user-account.html');
             }    
         }, 
-        function(e) {
-        
-    });
+        function(e) {}
+    );
 
     var appLink = '';
     /* 检测浏览器 */
