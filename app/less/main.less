@@ -82,3 +82,51 @@ header .menu div:before {
     border-right:8px solid transparent;
     border-bottom:8px solid #fff;
 }
+
+.banner {
+    position: relative;
+    margin-bottom: 10px;
+}
+
+.banner a {
+    position: absolute;
+    right: 15px;
+    bottom: 8px;
+}
+
+.show-panel {
+    position:relative;
+    height:120px;
+    margin: 0 5px 12px;
+    border: 1px solid #222;
+    border-radius: 12px;
+    background: #fafafa;
+}
+
+.show-panel span {
+    width: 50%;
+    height: 59px;
+    line-height: 59px;
+    float: left;
+    text-align: center;
+}
+
+.show-panel span:nth-of-type(1) {
+    position: relative;
+}
+
+.show-panel span:nth-of-type(1):before,
+.show-panel span:nth-of-type(1):after {
+    content:"";
+    width:2px;
+    height:46px;
+    overflow:hidden;
+    position:absolute;
+    right:-1px;
+    bottom:0;
+    background: #E45454;  
+}
+
+.show-panel span:nth-of-type(1):after {
+        bottom:-46px;
+    }
