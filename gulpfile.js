@@ -81,7 +81,7 @@ gulp.task('copy', function () {
     .pipe($.size({title: 'copy'}));
 });
 
-//监测amazeui node模块的修改
+//监测amazeui node模块 - amazeui css的修改
 gulp.task('copy2', function() {
     return gulp.src([
         'node_modules/amazeui/dist/**/amazeui.min.css'
